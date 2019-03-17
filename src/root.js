@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './reducers.js';
-import MyComponent from './Component.js';
+import MyComponent from './MyComponent.js';
 import MyToolbar from './Components/MyToolbar.js';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-const store = createStore(reducer);
-
-export default class Root extends Component {
+class Root extends Component {
     render() {
         return (
-            <Provider store={store} style={{ flex: 1 }}>
-                <View style={{ flex: 1 }}>
+                <View>
                     <MyToolbar />
-                    <MyComponent style={{ flex: 1 }} />
+                    <Button title='Test'
+                        onPress={() => this.props.navigation.navigate('MyComponent')}
+                    />
+                    {/* <MyComponent style={{ flex: 1 }} /> */}
                 </View>
-            </Provider>
         );
     }
 }
+
+const AppNavigator = createStackNavigator(
+    {
+        Home: Root,
+        MyComponent: MyComponent
+    },
+    {
+        initialRouteName: 'Home'
+    }
+)
+
+export default createAppContainer(AppNavigator);

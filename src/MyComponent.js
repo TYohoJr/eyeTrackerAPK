@@ -1,35 +1,25 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
-import { connect } from 'react-redux';
 
-class MyComponent extends Component {
+export default class MyComponent extends Component {
     constructor() {
         super();
         this.testButton = this.testButton.bind(this);
-        this.changeMessage = this.changeMessage.bind(this);
     }
 
     testButton() {
-        alert(this.props.messageReducer.message)
-    }
-
-    changeMessage(e) {
-        this.props.dispatch({
-            type:'changeMessage',
-            message: e
-        })
+        alert("Test")
     }
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <View>
                 <View style={styles.inputContainer}>
                     <TextInput
                         placeholder='Search Places'
                         style={styles.placeInput}
-                        onChangeText={this.changeMessage}
                     ></TextInput>
-                    <Button title={this.props.messageReducer.message}
+                    <Button title="Press"
                         style={styles.placeButton}
                         onPress={this.testButton}
                     />
@@ -41,7 +31,7 @@ class MyComponent extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 30,
+        // paddingTop: 30,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -58,6 +48,3 @@ const styles = StyleSheet.create({
         width: '30%',
     }
 });
-
-
-export default connect((state) => (state))(MyComponent)

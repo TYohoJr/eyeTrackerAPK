@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Button, ToolbarAndroid } from 'react-native';
-import { connect } from 'react-redux';
 
-class MyToolbar extends Component {
+export default class MyToolbar extends Component {
     constructor() {
         super();
         this.onActionSelected = this.onActionSelected.bind(this);
@@ -51,6 +50,3 @@ const styles = StyleSheet.create({
         height: 50,
     }
 });
-
-
-export default connect((state) => (state))(MyToolbar)
